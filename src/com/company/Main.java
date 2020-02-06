@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class Main {
 
+
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         Random random = new Random();
@@ -17,7 +18,7 @@ public class Main {
         int myNumber = random.nextInt(100) + 1;
         System.out.println("Cheat: " + myNumber);
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 11; i++) {
             System.out.println("Enter your guess");
             int userNumber = scan.nextInt();
 
@@ -35,6 +36,7 @@ public class Main {
             if (myNumber == userNumber) {
                 System.out.println("Congralulations, you win " + name + "!" );
                 break;
+
 
             }
 
