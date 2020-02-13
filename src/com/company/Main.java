@@ -13,6 +13,8 @@ public class Main {
 
         System.out.println("Want to play?");
         Game_Start_OR_Not();
+
+        String answer;
         Random random = new Random();
         do {
 
@@ -27,49 +29,49 @@ public class Main {
             for (int i = 0; i < 10; i++) {
                 int userNumber = askGuess();
 
-
-                if (myNumber > userNumber) {
-                    if (i < 9) System.out.println("Your number is less");
-                } else if (myNumber < userNumber) {
-                    if (i < 9) System.out.println("Your number is bigger");
-                }
                 if (myNumber == userNumber) {
                     System.out.println("Congratulations, you win " + name + "!");
-                    System.out.println("Again?");
-                    Game_Start_OR_Not();
                     break;
-
                 }
                 if (i == 9) {
                     System.out.println("You lose " + name + "!");
                     System.out.println("Number was: " + myNumber);
-                    System.out.println("Again?");
-                    Game_Start_OR_Not();
-
+                    break;
+                }
+                if (myNumber > userNumber) {
+                    System.out.println("Your number is less");
+                } else {
+                    System.out.println("Your number is bigger");
                 }
 
 
             }
-
-        } while (true);
-
+            System.out.println("Again? yes/no");
+            answer = scan.next();
+            if (answer.equalsIgnoreCase("yes")) {
+                System.out.println("Starting  new the game");
+            }
+        } while (answer.equalsIgnoreCase("yes"));
+        System.out.println("Good bye");
 
     }
 
-    private static void  Game_Start_OR_Not() {
+
+    private static void Game_Start_OR_Not() {
         for (; ; ) {
             String Answer = scan.next();
-            if (Answer.equals("No") || Answer.equals("no")) {
+            if (Answer.equalsIgnoreCase("no")) {
+                System.out.println("Good bye!");
                 System.exit(1);
-            } else if (Answer.equals("Yes") || Answer.equals("yes")) {
+            } else if (Answer.equalsIgnoreCase("yes")) {
                 System.out.println("Starting  new the game");
                 break;
             } else {
                 System.out.println("Enter Yes or No");
             }
         }
-
     }
+
 
     static int askGuess() {
         for (; ; ) {
