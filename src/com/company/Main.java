@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
@@ -9,17 +10,16 @@ public class Main {
     static Scanner scan = new Scanner(System.in);
 
     public static void main(String[] args) {
-        // System.out.println("Want to play?");
-        //  Game_Start();
+        Starting_Game();
 
         Random random = new Random();
-
+        ArrayList<GameResult> leaders = new ArrayList<>();
         do {
             System.out.println("What is your name?");
             String name = scan.next();
             System.out.println("Hello, " + name + "!");
             System.out.println("In this game you need to guess the number from 1-100 ");
-            var Howmanytries = tries();
+            var Howmanytries = 10;//tries();
             int myNumber = random.nextInt(100) + 1;
             System.out.println("Cheat: " + myNumber);
 
@@ -30,7 +30,9 @@ public class Main {
                 if (myNumber == userNumber) {
                     GameResult r = new GameResult();
                     r.name = name;
+                    r.HowManyTries = Howmanytries;
                     r.triesCount = i + 1;
+                    leaders.add(r);
                     System.out.println("Congratulations, you win " + name + "!");
                     break;
                 }
@@ -45,15 +47,19 @@ public class Main {
                     System.out.println("Your number is bigger");
                 }
             }
+            System.out.println("Again?");
         } while (askAnotherGame());
+        System.out.println("Leaderboard");
+        for (GameResult r : leaders) {
 
+            System.out.printf("User name:%s   Tries of %d - %d %n",r.name, r.HowManyTries, r.triesCount);
+        }
         System.out.println("Good bye");
     }
 
 
     static boolean askAnotherGame() {
         for (; ; ) {
-            System.out.println("Again?");
             String answer = scan.next();
             if (answer.equalsIgnoreCase("yes")) {
                 System.out.println("Starting  new the game");
@@ -88,24 +94,19 @@ public class Main {
         }
     }
 
+    static void Starting_Game() {
+        System.out.println("Want to play?");
+        boolean T_F = askAnotherGame();
+        if (!(T_F)) {
+            System.out.println("Good bye!");
+            System.exit(1);
+        }
+    }
+
+
     static int tries() {
         System.out.println("How many tries you want? Enter the number");
         return scan.nextInt();
-    }
-
-    private static void Game_Start() {
-        for (; ; ) {
-            String Answer = scan.next();
-            if (Answer.equalsIgnoreCase("no")) {
-                System.out.println("Good bye!");
-                System.exit(1);
-            } else if (Answer.equalsIgnoreCase("yes")) {
-                System.out.println("Starting  new the game");
-                break;
-            } else {
-                System.out.println("Enter Yes or No");
-            }
-        }
     }
 
 
