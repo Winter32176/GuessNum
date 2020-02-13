@@ -4,20 +4,22 @@ import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
+
 public class Main {
     static Scanner scan = new Scanner(System.in);
 
+
     public static void main(String[] args) {
+
+        System.out.println("Want to play?");
+        Game_Start_OR_Not();
         Random random = new Random();
-        String ABC="Yes";
-
-
         do {
+
             System.out.println("What is your name?");
             String name = scan.next();
             System.out.println("Hello, " + name + "!");
             System.out.println("Guess the number from 1-100");
-
             int myNumber = random.nextInt(100) + 1;
             System.out.println("Cheat: " + myNumber);
 
@@ -30,18 +32,42 @@ public class Main {
                     if (i < 9) System.out.println("Your number is less");
                 } else if (myNumber < userNumber) {
                     if (i < 9) System.out.println("Your number is bigger");
-                } else if (myNumber == userNumber) {
+                }
+                if (myNumber == userNumber) {
                     System.out.println("Congratulations, you win " + name + "!");
-                    QagainORnot();
+                    System.out.println("Again?");
+                    Game_Start_OR_Not();
+                    break;
 
                 }
                 if (i == 9) {
                     System.out.println("You lose " + name + "!");
                     System.out.println("Number was: " + myNumber);
+                    System.out.println("Again?");
+                    Game_Start_OR_Not();
+
                 }
 
+
             }
-        } while(ABC.equals("Yes"));
+
+        } while (true);
+
+
+    }
+
+    private static void  Game_Start_OR_Not() {
+        for (; ; ) {
+            String Answer = scan.next();
+            if (Answer.equals("No") || Answer.equals("no")) {
+                System.exit(1);
+            } else if (Answer.equals("Yes") || Answer.equals("yes")) {
+                System.out.println("Starting  new the game");
+                break;
+            } else {
+                System.out.println("Enter Yes or No");
+            }
+        }
 
     }
 
@@ -66,20 +92,31 @@ public class Main {
         }
     }
 
-    static String QagainORnot() {
-        for (; ; ) {
-            System.out.println("Again?");
-            String ABC = scan.next();
 
-            if (ABC.equals("No")) {
-                return ABC;
-            } else if (ABC.equals("Yes")) {
-                return ABC;
-            } else {
-                System.out.println("Enter Yes or No");
-            }
-
-
-        }
-    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
