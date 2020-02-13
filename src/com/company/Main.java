@@ -24,7 +24,6 @@ public class Main {
             var totalNumberOfAttempts = 10;//tries();
 
             long t1 = System.currentTimeMillis();
-            System.out.println(t1);
 
             int myNumber = random.nextInt(100) + 1;
             System.out.println("Cheat: " + myNumber);
@@ -61,7 +60,7 @@ public class Main {
 
         System.out.println("Leaderboard");
         for (GameResult r : leaders) {
-            System.out.printf("User name:%s   %d attempts out of %d    Time:%f sec  %n", r.name, r.AttemptsCount, r.totalNumberOfAttempts,r.time/1000.0);
+            System.out.printf("User name:%s   %d attempts out of %d    Time:%f sec  %n", r.name, r.AttemptsCount, r.totalNumberOfAttempts,r.time/1000;
             System.out.println("");
         }
 
