@@ -9,8 +9,8 @@ public class Main {
     static Scanner scan = new Scanner(System.in);
 
     public static void main(String[] args) {
-       // System.out.println("Want to play?");
-      //  Game_Start();
+        // System.out.println("Want to play?");
+        //  Game_Start();
 
         Random random = new Random();
 
@@ -28,6 +28,9 @@ public class Main {
                 int userNumber = askGuess();
 
                 if (myNumber == userNumber) {
+                    GameResult r = new GameResult();
+                    r.name = name;
+                    r.triesCount = i + 1;
                     System.out.println("Congratulations, you win " + name + "!");
                     break;
                 }
