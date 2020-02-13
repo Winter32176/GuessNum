@@ -10,7 +10,7 @@ public class Main {
     static Scanner scan = new Scanner(System.in);
 
     public static void main(String[] args) {
-        //Starting_Game();
+        Starting_Game();
 
         Random random = new Random();
         ArrayList<GameResult> leaders = new ArrayList<>();
@@ -21,7 +21,7 @@ public class Main {
             System.out.println("Hello, " + name + "!");
 
             System.out.println("In this game you need to guess the number from 1-100 ");
-            var totalNumberOfAttempts = 10;//tries();
+            var totalNumberOfAttempts =totalNumberOfAttempts();
 
             long t1 = System.currentTimeMillis();
 
@@ -60,7 +60,7 @@ public class Main {
 
         System.out.println("Leaderboard");
         for (GameResult r : leaders) {
-            System.out.printf("User name:%s   %d attempts out of %d    Time:%f sec  %n", r.name, r.AttemptsCount, r.totalNumberOfAttempts,r.time/1000;
+            System.out.printf("User name:%s   %d attempts out of %d    Time:%f sec  %n", r.name, r.AttemptsCount, r.totalNumberOfAttempts,r.time/1000);
             System.out.println("");
         }
 
@@ -114,7 +114,7 @@ public class Main {
     }
 
 
-    static int tries() {
+    static int totalNumberOfAttempts() {
         System.out.println("How many attempts you want? Enter the number");
         return scan.nextInt();
     }
