@@ -9,9 +9,11 @@ import java.util.Scanner;
 public class Main {
     static Scanner scan = new Scanner(System.in);
 
+
     public static void main(String[] args) {
         Starting_Game();
 
+        int lenghtFirst = 10;
         Random random = new Random();
         ArrayList<GameResult> leaders = new ArrayList<>();
 
@@ -21,7 +23,7 @@ public class Main {
             System.out.println("Hello, " + name + "!");
 
             System.out.println("In this game you need to guess the number from 1-100 ");
-            var totalNumberOfAttempts =totalNumberOfAttempts();
+            var totalNumberOfAttempts = totalNumberOfAttempts();
 
             long t1 = System.currentTimeMillis();
 
@@ -39,6 +41,20 @@ public class Main {
                     r.totalNumberOfAttempts = totalNumberOfAttempts;
                     r.AttemptsCount = i + 1;
                     r.time = time;
+
+                    int length = name.length();
+                    if (length > lenghtFirst) {
+                        r.lenghtBiggiest = length;
+                        lenghtFirst = 0;
+                        lenghtFirst += length;
+                    } else if (lenghtFirst == length) {
+                        r.lenght = 0;
+                    }
+                    if (length < lenghtFirst){
+                        r.lenght = length;
+                    }
+
+
                     leaders.add(r);
                     System.out.println("Congratulations, you win " + name + "!");
                     break;
@@ -60,8 +76,25 @@ public class Main {
 
         System.out.println("Leaderboard");
         for (GameResult r : leaders) {
+
+            System.out.print("Name: "+r.name);
+
+            int space;
+            if(r.lenght==lenghtFirst){
+                space = 0;
+            }else {
+                space = lenghtFirst-r.lenght;
+            }
+
+            for (int i = 0; i <space+2; i++) {
+                System.out.print(" ");
+
+            }
             System.out.printf("User name:%s   %d attempts out of %d    Time:%f sec  %n", r.name, r.AttemptsCount, r.totalNumberOfAttempts,r.time/1000);
+
             System.out.println("");
+            System.out.println(r.lenght);
+            System.out.println(lenghtFirst);
         }
 
         System.out.println("Good bye");
@@ -103,6 +136,7 @@ public class Main {
 
         }
     }
+
 
     static void Starting_Game() {
         System.out.println("Want to play?");
