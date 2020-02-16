@@ -50,7 +50,7 @@ public class Main {
                     } else if (lenghtFirst == length) {
                         r.lenght = 0;
                     }
-                    if (length < lenghtFirst){
+                    if (length < lenghtFirst) {
                         r.lenght = length;
                     }
 
@@ -77,24 +77,24 @@ public class Main {
         System.out.println("Leaderboard");
         for (GameResult r : leaders) {
 
-            System.out.print("Name: "+r.name);
+            System.out.print("Name: " + r.name);
 
             int space;
-            if(r.lenght==lenghtFirst){
+            if (r.lenght == 0) {
                 space = 0;
-            }else {
-                space = lenghtFirst-r.lenght;
+            } else {
+                space = lenghtFirst - r.lenght;
             }
 
-            for (int i = 0; i <space+2; i++) {
+            for (int i = 0; i < space + 3; i++) {
                 System.out.print(" ");
 
             }
-            System.out.printf("User name:%s   %d attempts out of %d    Time:%f sec  %n", r.name, r.AttemptsCount, r.totalNumberOfAttempts,r.time/1000);
+            System.out.print(r.AttemptsCount + " attempts out of " + r.totalNumberOfAttempts);
+            System.out.print("   Time: " + r.time / 1000.00);
+            // System.out.printf("User name:%s   %d attempts out of %d    Time:%f sec  %n", r.name, r.AttemptsCount, r.totalNumberOfAttempts,r.time/1000);
 
             System.out.println("");
-            System.out.println(r.lenght);
-            System.out.println(lenghtFirst);
         }
 
         System.out.println("Good bye");
@@ -152,6 +152,7 @@ public class Main {
         System.out.println("How many attempts you want? Enter the number");
         return scan.nextInt();
     }
+
 
 
 }
