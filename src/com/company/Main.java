@@ -7,9 +7,9 @@ public class Main {
     static LeaderBoard leaderBoard = new LeaderBoard();
 
     public static void main(String[] args) {
-        leaderBoard.load();
-
 //       Asker.Starting_Game();
+       leaderBoard.load();
+
         Random random = new Random();
 
         do {
