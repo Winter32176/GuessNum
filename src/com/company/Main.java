@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.Random;
+import java.util.TimeZone;
 
 
 public class Main {
@@ -22,9 +23,10 @@ public class Main {
             long t1 = System.currentTimeMillis();
 
             int myNumber = random.nextInt(100) + 1;
-            System.out.println("Cheat: " + myNumber);
+           System.out.println("Cheat: " + myNumber);
 
             for (int i = 0; i < totalNumberOfAttempts; i++) {
+         
                 int userNumber = Asker.askGuess();
                 if (myNumber == userNumber) {
                     long t2 = System.currentTimeMillis();
@@ -34,6 +36,7 @@ public class Main {
                     r.setTotalNumberOfAttempts(totalNumberOfAttempts);
                     r.setAttemptsCount(i + 1);
                     r.setTimeGame(time);
+                    r.setT1(t1);
                     leaderBoard.addLeader(r);
                     System.out.println("Congratulations, you win " + name + "!");
                     break;

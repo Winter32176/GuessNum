@@ -61,16 +61,18 @@ public class LeaderBoard {
         try (Scanner in = new Scanner(file)) {
 
             while (in.hasNext()) {
+                long t1 = in.nextLong();
                 String name = in.next();
                 int n = in.nextInt();
                 int m = in.nextInt();
-                long time = in.nextLong();
+                long timeGame = in.nextLong();
 
                 GameResult r = new GameResult();
+                r.setT1(t1);
                 r.setName(name);
                 r.setAttemptsCount(n);
                 r.setTotalNumberOfAttempts(m);
-                r.setTimeGame(time);
+                r.setTimeGame(timeGame);
 
                 leaders.add(r);
             }
@@ -86,7 +88,8 @@ public class LeaderBoard {
         File file = new File("leaderHistory");
         try (PrintWriter out = new PrintWriter(file)) {
             for (GameResult r : leaders) {
-                out.printf("%s %d %d %d %n", r.getName(), r.getAttemptsCount(), r.getTotalNumberOfAttempts(), r.getTimeGame());
+
+                out.printf("%d %s %d %d %d %n",r.getT1(), r.getName(), r.getAttemptsCount(), r.getTotalNumberOfAttempts(), r.getTimeGame());
             }
 
         } catch (IOException e) {

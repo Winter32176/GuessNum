@@ -1,7 +1,7 @@
 package com.company;
 
 public class GameResult {
-    private long timeReal;
+    private long t1;
     private String UTC;
     private String name;
     private int AttemptsCount;
@@ -38,5 +38,21 @@ public class GameResult {
 
     public void setTimeGame(long timeGame) {
         this.timeGame = timeGame;
+    }
+
+    public long getT1() {
+        return t1;
+    }
+
+    public void setT1(long t1) {
+        this.t1 = t1;
+    }
+
+    public String getUTC() {
+        return UTC;
+    }
+
+    public void setUTC(String UTC) {
+        this.UTC = UTC;
     }
 }
