@@ -19,7 +19,8 @@ public class LeaderBoard {
 
 
         leaders.stream().sorted(Comparator.comparing(GameResult::getAttemptsCount)
-                .thenComparing(GameResult::getTime))
+                .thenComparing(GameResult::getTime)
+                .thenComparing(GameResult::getTotalNumberOfAttempts))
                 .limit(5)
                 .forEach(r -> System.out.printf("Name: %-" + maxLenght + "s  %3d attempts out of %-3d  Time: %3.2f %n", r.getName(), r.getAttemptsCount(),
                         r.getTotalNumberOfAttempts(), r.getTime() / 1000.0));
@@ -33,18 +34,30 @@ public class LeaderBoard {
 
 //        for (int i = 0; i < Math.min(leaders.size(), 5); i++) {
 //            GameResult r = leaders.get(i);
-//            System.out.printf("Name: %-" + maxLenght + "s  %3d attempts out of %-3d  Time: %3.2f %n", r.getName(), r.getAttemptsCount(), r.getTotalNumberOfAttempts(), r.getTime() / 1000.0);
+//            System.out.printf("Name: %-" + maxLenght + "s  %3d attempts out of %-3d  Time: %3.2f %n", r.getName(),
+//               r.getAttemptsCount(), r.getTotalNumberOfAttempts(), r.getTime() / 1000.0);
 //        }
 
-//        leaders.sort(Comparator.comparing(GameResult::getAttemptsCount).thenComparing(GameResult::getTime));  сортирует исходник
+//        leaders.sort(Comparator.comparing(GameResult::getAttemptsCount).thenComparing(GameResult::getTime));             ////  сортирует исходник
 
 //        int count = 0;
 //        for (GameResult r : leaders) {
-//            System.out.printf("Name: %-" + maxLenght + "s  %-3d attempts out of %-3d  Time: %3.2f %n", r.getName(), r.getAttemptsCount(), r.getTotalNumberOfAttempts(), r.getTime() / 1000.0);
+//            System.out.printf("Name: %-" + maxLenght + "s  %-3d attempts out of %-3d  Time: %3.2f %n", r.getName(),
+//                r.getAttemptsCount(), r.getTotalNumberOfAttempts(), r.getTime() / 1000.0);
+//
 //            System.out.println("");
 //            count++;
 //            if (count < 5) break;
 //        }
 
     }
+
+    public void load() {
+
+    }
+
+    public void save() {
+
+    }
+
 }

@@ -7,7 +7,9 @@ public class Main {
     static LeaderBoard leaderBoard = new LeaderBoard();
 
     public static void main(String[] args) {
-        //Asker.Starting_Game();
+        leaderBoard.load();
+
+//       Asker.Starting_Game();
         Random random = new Random();
 
         do {
@@ -52,6 +54,8 @@ public class Main {
         } while (Asker.askAnotherGame());
 
         leaderBoard.leaderboard1();
+        leaderBoard.save();
+
         System.out.println("");
         System.out.println("Good bye");
     }
