@@ -1,6 +1,5 @@
 package com.company;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 
@@ -29,10 +28,10 @@ public class Main {
                     long t2 = System.currentTimeMillis();
                     long time = t2 - t1;
                     GameResult r = new GameResult();
-                    r.name = name;
-                    r.totalNumberOfAttempts = totalNumberOfAttempts;
-                    r.AttemptsCount = i + 1;
-                    r.time = time;
+                    r.setName(name);
+                    r.setTotalNumberOfAttempts(totalNumberOfAttempts);
+                    r.setAttemptsCount(i + 1);
+                    r.setTime(time);
                     leaderBoard.addLeader(r);
                     System.out.println("Congratulations, you win " + name + "!");
                     break;
@@ -53,6 +52,8 @@ public class Main {
         } while (Asker.askAnotherGame());
 
         leaderBoard.leaderboard1();
+        System.out.println("");
+        System.out.println("Good bye");
     }
 }
 

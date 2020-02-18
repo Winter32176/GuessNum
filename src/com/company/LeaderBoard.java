@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class LeaderBoard {
     private ArrayList<GameResult> leaders = new ArrayList<>();
@@ -11,19 +12,39 @@ public class LeaderBoard {
 
     public void leaderboard1() {
         System.out.println("Leaderboard");
-        int maxLenght = 0;
+        int maxLenght = leaders.stream()
+                .mapToInt(r -> r.getName().length())
+                .max()
+                .orElse(0);
 
-        for (GameResult r : leaders) {
-            if (r.name.length() > maxLenght) {
-                maxLenght = r.name.length();
-            }
-        }
 
-        for (GameResult r : leaders) {
-            System.out.printf("Name: %-" + maxLenght + "s %2d attempts out of %2d Time: %3.2f %n", r.name, r.AttemptsCount, r.totalNumberOfAttempts, r.time / 1000.0);
-            System.out.println("");
-        }
+        leaders.stream().sorted(Comparator.comparing(GameResult::getAttemptsCount)
+                .thenComparing(GameResult::getTime))
+                .limit(5)
+                .forEach(r -> System.out.printf("Name: %-" + maxLenght + "s  %3d attempts out of %-3d  Time: %3.2f %n", r.getName(), r.getAttemptsCount(),
+                        r.getTotalNumberOfAttempts(), r.getTime() / 1000.0));
 
-        System.out.println("Good bye");
+//        int maxLenght = 0;
+//        for (GameResult r : leaders) {
+//            maxLenght = Math.max(maxLenght, r.getName().length());
+//
+////            if (r.getName().length() > maxLenght) maxLenght = r.getName().length();
+//        }
+
+//        for (int i = 0; i < Math.min(leaders.size(), 5); i++) {
+//            GameResult r = leaders.get(i);
+//            System.out.printf("Name: %-" + maxLenght + "s  %3d attempts out of %-3d  Time: %3.2f %n", r.getName(), r.getAttemptsCount(), r.getTotalNumberOfAttempts(), r.getTime() / 1000.0);
+//        }
+
+//        leaders.sort(Comparator.comparing(GameResult::getAttemptsCount).thenComparing(GameResult::getTime));  сортирует исходник
+
+//        int count = 0;
+//        for (GameResult r : leaders) {
+//            System.out.printf("Name: %-" + maxLenght + "s  %-3d attempts out of %-3d  Time: %3.2f %n", r.getName(), r.getAttemptsCount(), r.getTotalNumberOfAttempts(), r.getTime() / 1000.0);
+//            System.out.println("");
+//            count++;
+//            if (count < 5) break;
+//        }
+
     }
 }
