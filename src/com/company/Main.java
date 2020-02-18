@@ -11,9 +11,9 @@ public class Main {
 
 
     public static void main(String[] args) {
-        Starting_Game();
+     //   Starting_Game();
 
-        int lenghtFirst = 10;
+        int lenghtBiggest = 10;
         Random random = new Random();
         ArrayList<GameResult> leaders = new ArrayList<>();
 
@@ -43,14 +43,14 @@ public class Main {
                     r.time = time;
 
                     int length = name.length();
-                    if (length > lenghtFirst) {
+                    if (length > lenghtBiggest) {
                         r.lenghtBiggiest = length;
-                        lenghtFirst = 0;
-                        lenghtFirst += length;
-                    } else if (lenghtFirst == length) {
+                        lenghtBiggest = 0;
+                        lenghtBiggest += length;
+                    } else if (lenghtBiggest == length) {
                         r.lenght = 0;
                     }
-                    if (length < lenghtFirst) {
+                    if (length < lenghtBiggest) {
                         r.lenght = length;
                     }
 
@@ -83,7 +83,7 @@ public class Main {
             if (r.lenght == 0) {
                 space = 0;
             } else {
-                space = lenghtFirst - r.lenght;
+                space = lenghtBiggest - r.lenght;
             }
 
             for (int i = 0; i < space + 3; i++) {
