@@ -55,4 +55,9 @@ public class Asker {
         System.out.println("How many attempts you want? Enter the number");
         return scan.nextInt();
     }
+
+    public static String askUserName() {
+        System.out.println("What is your name?");
+        return scan.next();
+    }
 }

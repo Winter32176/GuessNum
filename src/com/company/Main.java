@@ -5,16 +5,15 @@ import java.util.Random;
 
 
 public class Main {
-
+    static LeaderBoard leaderBoard = new LeaderBoard();
 
     public static void main(String[] args) {
-        //   Starting_Game();
-
+        //Asker.Starting_Game();
         Random random = new Random();
-        ArrayList<GameResult> leaders = new ArrayList<>();
 
         do {
-            String name = Name();
+            String name = Asker.askUserName();
+            System.out.println("Hello, " + name + "!");
 
             System.out.println("In this game you need to guess the number from 1-100 ");
             var totalNumberOfAttempts = Asker.totalNumberOfAttempts();
@@ -23,7 +22,6 @@ public class Main {
 
             int myNumber = random.nextInt(100) + 1;
             System.out.println("Cheat: " + myNumber);
-
 
             for (int i = 0; i < totalNumberOfAttempts; i++) {
                 int userNumber = Asker.askGuess();
@@ -35,7 +33,7 @@ public class Main {
                     r.totalNumberOfAttempts = totalNumberOfAttempts;
                     r.AttemptsCount = i + 1;
                     r.time = time;
-                    leaders.add(r);
+                    leaderBoard.addLeader(r);
                     System.out.println("Congratulations, you win " + name + "!");
                     break;
                 }
@@ -54,35 +52,8 @@ public class Main {
             System.out.println("Again?");
         } while (Asker.askAnotherGame());
 
-
-        Leaderboard(leaders);
+        leaderBoard.leaderboard1();
     }
-
-    private static String Name() {
-        System.out.println("What is your name?");
-        String name = Asker.scan.next();
-        System.out.println("Hello, " + name + "!");
-        return name;
-    }
-
-    private static void Leaderboard(ArrayList<GameResult> leaders) {
-        System.out.println("Leaderboard");
-        int maxLenght = 0;
-
-        for (GameResult r : leaders) {
-            if (r.name.length() > maxLenght) {
-                maxLenght = r.name.length();
-            }
-        }
-        for (GameResult r : leaders) {
-            System.out.printf("Name: %-" + maxLenght + "s %2d attempts out of %2d Time: %3.2f %n", r.name, r.AttemptsCount, r.totalNumberOfAttempts, r.time / 1000.0);
-            System.out.println("");
-        }
-
-        System.out.println("Good bye");
-    }
-
-
 }
 
 
