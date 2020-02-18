@@ -1,29 +1,23 @@
 package com.company;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Random;
-import java.util.Scanner;
 
 
 public class Main {
-    static Scanner scan = new Scanner(System.in);
 
 
     public static void main(String[] args) {
-     //   Starting_Game();
+        //   Starting_Game();
 
-        int lenghtBiggest = 10;
         Random random = new Random();
         ArrayList<GameResult> leaders = new ArrayList<>();
 
         do {
-            System.out.println("What is your name?");
-            String name = scan.next();
-            System.out.println("Hello, " + name + "!");
+            String name = Name();
 
             System.out.println("In this game you need to guess the number from 1-100 ");
-            var totalNumberOfAttempts = totalNumberOfAttempts();
+            var totalNumberOfAttempts = Asker.totalNumberOfAttempts();
 
             long t1 = System.currentTimeMillis();
 
@@ -32,7 +26,7 @@ public class Main {
 
 
             for (int i = 0; i < totalNumberOfAttempts; i++) {
-                int userNumber = askGuess();
+                int userNumber = Asker.askGuess();
                 if (myNumber == userNumber) {
                     long t2 = System.currentTimeMillis();
                     long time = t2 - t1;
@@ -41,20 +35,6 @@ public class Main {
                     r.totalNumberOfAttempts = totalNumberOfAttempts;
                     r.AttemptsCount = i + 1;
                     r.time = time;
-
-                    int length = name.length();
-                    if (length > lenghtBiggest) {
-                        r.lenghtBiggiest = length;
-                        lenghtBiggest = 0;
-                        lenghtBiggest += length;
-                    } else if (lenghtBiggest == length) {
-                        r.lenght = 0;
-                    }
-                    if (length < lenghtBiggest) {
-                        r.lenght = length;
-                    }
-
-
                     leaders.add(r);
                     System.out.println("Congratulations, you win " + name + "!");
                     break;
@@ -72,87 +52,35 @@ public class Main {
             }
 
             System.out.println("Again?");
-        } while (askAnotherGame());
+        } while (Asker.askAnotherGame());
 
+
+        Leaderboard(leaders);
+    }
+
+    private static String Name() {
+        System.out.println("What is your name?");
+        String name = Asker.scan.next();
+        System.out.println("Hello, " + name + "!");
+        return name;
+    }
+
+    private static void Leaderboard(ArrayList<GameResult> leaders) {
         System.out.println("Leaderboard");
+        int maxLenght = 0;
+
         for (GameResult r : leaders) {
-
-            System.out.print("Name: " + r.name);
-
-            int space;
-            if (r.lenght == 0) {
-                space = 0;
-            } else {
-                space = lenghtBiggest - r.lenght;
+            if (r.name.length() > maxLenght) {
+                maxLenght = r.name.length();
             }
-
-            for (int i = 0; i < space + 3; i++) {
-                System.out.print(" ");
-
-            }
-            System.out.print(r.AttemptsCount + " attempts out of " + r.totalNumberOfAttempts);
-            System.out.print("   Time: " + r.time / 1000.00);
-            // System.out.printf("User name:%s   %d attempts out of %d    Time:%f sec  %n", r.name, r.AttemptsCount, r.totalNumberOfAttempts,r.time/1000);
-
+        }
+        for (GameResult r : leaders) {
+            System.out.printf("Name: %-" + maxLenght + "s %2d attempts out of %2d Time: %3.2f %n", r.name, r.AttemptsCount, r.totalNumberOfAttempts, r.time / 1000.0);
             System.out.println("");
         }
 
         System.out.println("Good bye");
     }
-
-
-    static boolean askAnotherGame() {
-        for (; ; ) {
-            String answer = scan.next();
-            if (answer.equalsIgnoreCase("yes")) {
-                System.out.println("Starting  new the game");
-                return true;
-            } else if (answer.equalsIgnoreCase("no")) {
-                return false;
-            } else {
-                System.out.println("Enter Yes or No");
-            }
-        }
-
-    }
-
-    static int askGuess() {
-        for (; ; ) {
-            try {
-                System.out.println("Enter your guess");
-                int num = scan.nextInt();
-                if (num >= 1 & num <= 100) {
-                    return num;
-                } else {
-                    System.out.println("Enter the number from 1-100");
-                }
-
-
-            } catch (InputMismatchException wrong_input) {
-                String str = scan.next();
-                System.out.println(str + " isn't number");
-
-            }
-
-        }
-    }
-
-
-    static void Starting_Game() {
-        System.out.println("Want to play?");
-        boolean T_F = askAnotherGame();
-        if (!(T_F)) {
-            System.out.println("Good bye!");
-            System.exit(1);
-        }
-    }
-
-
-    static int totalNumberOfAttempts() {
-        System.out.println("How many attempts you want? Enter the number");
-        return scan.nextInt();
-    }
-
 
 
 }

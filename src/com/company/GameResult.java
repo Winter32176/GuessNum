@@ -6,9 +6,4 @@ public class GameResult {
     public int totalNumberOfAttempts;
     public long time;
 
-    public int lenghtBiggiest;
-    public int lenght;
-
-
-
 }
