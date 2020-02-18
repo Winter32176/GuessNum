@@ -56,8 +56,7 @@ public class Main {
         leaderBoard.leaderboard1();
         leaderBoard.save();
 
-        System.out.println("");
-        System.out.println("Good bye");
+        System.out.printf("%nGood bye");
     }
 }
 

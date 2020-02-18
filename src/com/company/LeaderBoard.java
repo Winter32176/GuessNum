@@ -1,7 +1,11 @@
 package com.company;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Scanner;
 
 public class LeaderBoard {
     private ArrayList<GameResult> leaders = new ArrayList<>();
@@ -53,11 +57,41 @@ public class LeaderBoard {
     }
 
     public void load() {
+        File file = new File("leaderHistory");
+        try (Scanner in = new Scanner(file)) {
+
+            while (in.hasNext()) {
+                String name = in.next();
+                int n = in.nextInt();
+                int m = in.nextInt();
+                long time = in.nextLong();
+
+                GameResult r = new GameResult();
+                r.setName(name);
+                r.setAttemptsCount(n);
+                r.setTotalNumberOfAttempts(m);
+                r.setTime(time);
+
+                leaders.add(r);
+            }
+
+        } catch (IOException e) {
+            System.out.println("Cannot load leaderboard. Creating new");
+        }
+
 
     }
 
     public void save() {
+        File file = new File("leaderHistory");
+        try (PrintWriter out = new PrintWriter(file)) {
+            for (GameResult r : leaders) {
+                out.printf("%s %d %d %d %n", r.getName(), r.getAttemptsCount(), r.getTotalNumberOfAttempts(), r.getTime());
+            }
 
+        } catch (IOException e) {
+            System.out.println("ERROR File unattainable");
+        }
     }
 
 }
