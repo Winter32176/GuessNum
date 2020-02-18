@@ -33,7 +33,7 @@ public class Main {
                     r.setName(name);
                     r.setTotalNumberOfAttempts(totalNumberOfAttempts);
                     r.setAttemptsCount(i + 1);
-                    r.setTime(time);
+                    r.setTimeGame(time);
                     leaderBoard.addLeader(r);
                     System.out.println("Congratulations, you win " + name + "!");
                     break;

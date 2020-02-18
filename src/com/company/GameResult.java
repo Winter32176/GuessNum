@@ -1,10 +1,12 @@
 package com.company;
 
 public class GameResult {
+    private long timeReal;
+    private String UTC;
     private String name;
     private int AttemptsCount;
     private int totalNumberOfAttempts;
-    private long time;
+    private long timeGame;
 
     public String getName() {
         return name;
@@ -30,11 +32,11 @@ public class GameResult {
         this.totalNumberOfAttempts = totalNumberOfAttempts;
     }
 
-    public long getTime() {
-        return time;
+    public long getTimeGame() {
+        return timeGame;
     }
 
-    public void setTime(long time) {
-        this.time = time;
+    public void setTimeGame(long timeGame) {
+        this.timeGame = timeGame;
     }
 }
