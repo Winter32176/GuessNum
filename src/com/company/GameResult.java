@@ -2,7 +2,6 @@ package com.company;
 
 public class GameResult {
     private long t1;
-    private String UTC;
     private String name;
     private int AttemptsCount;
     private int totalNumberOfAttempts;

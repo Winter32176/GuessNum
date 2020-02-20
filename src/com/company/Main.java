@@ -20,13 +20,13 @@ public class Main {
             System.out.println("In this game you need to guess the number from 1-100 ");
             var totalNumberOfAttempts = Asker.totalNumberOfAttempts();
 
-            long t1 = System.currentTimeMillis();
-
             int myNumber = random.nextInt(100) + 1;
            System.out.println("Cheat: " + myNumber);
 
+            long t1 = System.currentTimeMillis();
+
             for (int i = 0; i < totalNumberOfAttempts; i++) {
-         
+
                 int userNumber = Asker.askGuess();
                 if (myNumber == userNumber) {
                     long t2 = System.currentTimeMillis();
