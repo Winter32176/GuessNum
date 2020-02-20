@@ -47,11 +47,5 @@ public class GameResult {
         this.t1 = t1;
     }
 
-    public String getUTC() {
-        return UTC;
-    }
 
-    public void setUTC(String UTC) {
-        this.UTC = UTC;
-    }
 }
