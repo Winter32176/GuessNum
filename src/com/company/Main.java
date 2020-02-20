@@ -1,14 +1,13 @@
 package com.company;
 
 import java.util.Random;
-import java.util.TimeZone;
 
 
 public class Main {
     static LeaderBoard leaderBoard = new LeaderBoard();
 
     public static void main(String[] args) {
-//       Asker.Starting_Game();
+//        Asker.Starting_Game();
        leaderBoard.load();
 
         Random random = new Random();
@@ -32,11 +31,11 @@ public class Main {
                     long t2 = System.currentTimeMillis();
                     long time = t2 - t1;
                     GameResult r = new GameResult();
+                    r.setStartTime(t1);
                     r.setName(name);
                     r.setTotalNumberOfAttempts(totalNumberOfAttempts);
                     r.setAttemptsCount(i + 1);
                     r.setTimeGame(time);
-                    r.setT1(t1);
                     leaderBoard.addLeader(r);
                     System.out.println("Congratulations, you win " + name + "!");
                     break;

@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 public class LeaderBoard {
     private ArrayList<GameResult> leaders = new ArrayList<>();
+    private static final File FILE = new File("leaderHistory");
 
     public void addLeader(GameResult gr) {
         leaders.add(gr);
@@ -57,18 +58,17 @@ public class LeaderBoard {
     }
 
     public void load() {
-        File file = new File("leaderHistory");
-        try (Scanner in = new Scanner(file)) {
+        try (Scanner in = new Scanner(FILE)) {
 
             while (in.hasNext()) {
-                long t1 = in.nextLong();
+                long startTime = in.nextLong();
                 String name = in.next();
                 int n = in.nextInt();
                 int m = in.nextInt();
                 long timeGame = in.nextLong();
 
                 GameResult r = new GameResult();
-                r.setT1(t1);
+                r.setStartTime(startTime);
                 r.setName(name);
                 r.setAttemptsCount(n);
                 r.setTotalNumberOfAttempts(m);
@@ -85,15 +85,14 @@ public class LeaderBoard {
     }
 
     public void save() {
-        File file = new File("leaderHistory");
-        try (PrintWriter out = new PrintWriter(file)) {
+        try (PrintWriter out = new PrintWriter(FILE)) {
             for (GameResult r : leaders) {
 
-                out.printf("%d %s %d %d %d %n",r.getT1(), r.getName(), r.getAttemptsCount(), r.getTotalNumberOfAttempts(), r.getTimeGame());
+                out.printf("%d %s %d %d %d %n",r.getStartTime(), r.getName(), r.getAttemptsCount(), r.getTotalNumberOfAttempts(), r.getTimeGame());
             }
 
         } catch (IOException e) {
-            System.out.println("ERROR File unattainable");
+            System.out.println("ERROR fFile unattainable");
         }
     }
 

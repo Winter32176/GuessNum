@@ -1,7 +1,7 @@
 package com.company;
 
 public class GameResult {
-    private long t1;
+    private long startTime;
     private String name;
     private int AttemptsCount;
     private int totalNumberOfAttempts;
@@ -39,12 +39,12 @@ public class GameResult {
         this.timeGame = timeGame;
     }
 
-    public long getT1() {
-        return t1;
+    public long getStartTime() {
+        return startTime;
     }
 
-    public void setT1(long t1) {
-        this.t1 = t1;
+    public void setStartTime(long startTime) {
+        this.startTime = startTime;
     }
 
 
